@@ -23,6 +23,7 @@ namespace Mega.WhatsAppApi.Infraestrutura.Servicos
         {
             to_number = ConvertaNumero(mensagem.Telefone),
             text = mensagem.Texto,
+            message = mensagem.LinkArquivo,
             type = "media"
         };
 

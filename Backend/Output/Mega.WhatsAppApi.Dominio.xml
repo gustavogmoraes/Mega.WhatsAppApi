@@ -24,5 +24,11 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:Mega.WhatsAppApi.Dominio.Objetos.Mensagem.LinkArquivo">
+            <summary>
+            O link do arquivo.
+            </summary>
+            <value></value>
+        </member>
     </members>
 </doc>
