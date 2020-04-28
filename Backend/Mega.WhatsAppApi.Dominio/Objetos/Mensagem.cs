@@ -23,5 +23,11 @@ namespace Mega.WhatsAppApi.Dominio.Objetos
         /// </summary>
         /// <value></value>
         public string TipoDeMensagem { get; set; }
+
+        /// <summary>
+        /// O link do arquivo.
+        /// </summary>
+        /// <value></value>
+        public string LinkArquivo { get; set; }
     }
 }
