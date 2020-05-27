@@ -348,3 +348,5 @@ healthchecksdb
 MigrationBackup/
 
 Backend/Output/
+Backend/.DS_Store
+.DS_Store
