@@ -16,7 +16,7 @@ WORKDIR "/src/Mega.WhatsAppApi.Api"
 RUN dotnet build -c Release -o /app/build
 
 WORKDIR /src
-COPY Output/free.gsoftware.client.certificate.with.password.pfx free.gsoftware.client.certificate.with.password.pfx
+COPY free.gsoftware.client.certificate.with.password.pfx free.gsoftware.client.certificate.with.password.pfx
 
 FROM build AS publish
 RUN dotnet publish -c Release -o /app/publish
