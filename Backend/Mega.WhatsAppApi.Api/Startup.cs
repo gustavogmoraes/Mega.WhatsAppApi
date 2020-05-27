@@ -1,43 +1,53 @@
-using System.Threading;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Reflection;
 using Mega.WhatsAppApi.Api.Filters;
-using Mega.WhatsAppApi.Api.Swagger.Examples;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Filters;
 using Mega.WhatsAppApi.Api.Swagger;
 
 namespace Mega.WhatsAppApi.Api
 {
+    /// <summary>
+    /// Api startup class.
+    /// </summary>
     public class Startup 
     {
+        /// <summary>
+        /// Api config.
+        /// </summary>
+        /// <value>The api config.</value>
         public IConfiguration Configuration { get; }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup (IConfiguration configuration) { Configuration = configuration; }
         
+        /// <summary>
+        /// Configures the services.
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices (IServiceCollection services) 
         {
             services.AddSession();
-
             services.StartupSwagger();
             services.AddControllersWithViews (options => 
             {
-                options.Filters.Add (typeof (SessaoFilter));
+                options.Filters.Add (typeof (SessionFilter));
                 options.Filters.Add (typeof (ExceptionHandler));
             });
         }
 
+        /// <summary>
+        /// Configures the application and web host environment.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
         public void Configure (IApplicationBuilder app, IWebHostEnvironment env) 
         {
-            if (env.IsDevelopment ()) 
+            if (env.IsDevelopment()) 
             {
                 app.UseDeveloperExceptionPage (); 
             }
@@ -51,6 +61,9 @@ namespace Mega.WhatsAppApi.Api
                 .Build());
 
             app.UseSession();
+
+            //app.UseMiddleware<LoggingMiddleware>();
+
             app.UseEndpoints (endpoints => endpoints.MapControllers ());
             
             app.UseSwagger();

@@ -9,8 +9,15 @@ using Swashbuckle.AspNetCore.Filters;
 
 namespace Mega.WhatsAppApi.Api.Swagger
 {
+    /// <summary>
+    /// Swagger gen startup extensions.
+    /// </summary>
     public static class SwaggerStartupExtensions
     {
+        /// <summary>
+        /// Starts up swagger.
+        /// </summary>
+        /// <param name="services"></param>
         public static void StartupSwagger(this IServiceCollection services)
         {
             services.AddSwaggerExamplesFromAssemblyOf<MensagemExample> ();
@@ -39,8 +46,8 @@ namespace Mega.WhatsAppApi.Api.Swagger
                 c.AddSecurityRequirement(requirement);
                 c.ExampleFilters();
 
-                var xmlPath1 = Path.Combine(AppContext.BaseDirectory, "Mega.WhatsAppApi.Dominio.xml");
-                var xmlPath2 = Path.Combine(AppContext.BaseDirectory, "Mega.WhatsAppApi.Infraestrutura.xml");
+                var xmlPath1 = Path.Combine(AppContext.BaseDirectory, "Mega.WhatsAppApi.Domain.xml");
+                var xmlPath2 = Path.Combine(AppContext.BaseDirectory, "Mega.WhatsAppApi.Infrastructure.xml");
                 var xmlPath3 = Path.Combine(AppContext.BaseDirectory, "Mega.WhatsAppApi.Api.xml");
 
                 c.IncludeXmlComments(xmlPath1);

@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.29806.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mega.WhatsAppApi.Api", "Mega.WhatsAppApi.Api\Mega.WhatsAppApi.Api.csproj", "{804BA902-2764-4130-8AA1-8E42E870FED4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mega.WhatsAppApi.Dominio", "Mega.WhatsAppApi.Dominio\Mega.WhatsAppApi.Dominio.csproj", "{D6F7833A-45A2-482C-B0C9-B7A5543798F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mega.WhatsAppApi.Domain", "Mega.WhatsAppApi.Domain\Mega.WhatsAppApi.Domain.csproj", "{D6F7833A-45A2-482C-B0C9-B7A5543798F8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mega.WhatsAppApi.Infraestrutura", "Mega.WhatsAppApi.Infraestrutura\Mega.WhatsAppApi.Infraestrutura.csproj", "{B6A219D3-1FB3-4B09-BECC-7DF38D125283}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mega.WhatsAppApi.Infrastructure", "Mega.WhatsAppApi.Infrastructure\Mega.WhatsAppApi.Infrastructure.csproj", "{B6A219D3-1FB3-4B09-BECC-7DF38D125283}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
