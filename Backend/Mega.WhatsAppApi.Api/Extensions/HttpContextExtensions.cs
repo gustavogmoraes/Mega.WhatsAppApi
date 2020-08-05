@@ -13,7 +13,11 @@ namespace Mega.WhatsAppApi.Api.Extensions
         /// Gets the client session.
         /// </summary>
         /// <returns>The session.</returns>
-        public static Session GetClientSession(this HttpContext httpContext) => 
-            JsonConvert.DeserializeObject<Session>(httpContext.Session.GetString("clientSession"));
+        public static Session GetClientSession(this HttpContext httpContext)
+        {
+            var session = httpContext.Session.GetString("clientSession");
+            
+            return string.IsNullOrEmpty(session) ? null : JsonConvert.DeserializeObject<Session>(session);
+        }
     }
 }

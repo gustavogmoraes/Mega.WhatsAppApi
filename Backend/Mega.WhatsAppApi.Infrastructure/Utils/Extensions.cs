@@ -8,7 +8,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.Reflection;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using Raven.Client.Documents;
 
 namespace Mega.WhatsAppApi.Infrastructure.Utils
 {
@@ -39,7 +41,7 @@ namespace Mega.WhatsAppApi.Infrastructure.Utils
         /// <returns></returns>
         public static dynamic GetStringContentResult(this string resultString)
         { 
-            return (dynamic)JsonConvert.DeserializeObject<ExpandoObject>(resultString, new ExpandoObjectConverter());
+            return JsonConvert.DeserializeObject<dynamic>(resultString);
         }
 
         /// <summary>
@@ -71,7 +73,35 @@ namespace Mega.WhatsAppApi.Infrastructure.Utils
         /// <returns>The converted datetime.</returns>
         public static DateTime ToBraziliaDateTime(this DateTime dateTime) 
         { 
-            return TimeZoneInfo.ConvertTimeFromUtc(dateTime, TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time"));
+            return TimeZoneInfo.ConvertTimeFromUtc(dateTime, TimeZoneInfo.FindSystemTimeZoneById("Brazil/East"));
+        }
+        
+        public static void MassInsert<T>(this IDocumentStore store, IList<T> list, bool processLoopOnDatabase = false)
+            where T: class, new()
+        {
+            if (processLoopOnDatabase)
+            {
+                using (var bulkInsert = store.BulkInsert())
+                {
+                    foreach (var item in list)
+                    {
+                        bulkInsert.Store(item);
+                    }
+                }
+                return;
+            }
+
+            using (var session = store.OpenSession())
+            {
+                list.ToList().ForEach(item => session.Store(item));
+                session.SaveChanges();
+            }
+        }
+        
+        public static dynamic CastToExpando(this object anyObj)
+        {
+            string str = JsonConvert.SerializeObject(anyObj);
+            return JsonConvert.DeserializeObject<ExpandoObject>(str, new ExpandoObjectConverter());
         }
     }
 }

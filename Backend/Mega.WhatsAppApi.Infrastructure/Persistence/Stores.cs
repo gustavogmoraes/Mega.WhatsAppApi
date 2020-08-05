@@ -16,13 +16,25 @@ namespace Mega.WhatsAppApi.Infrastructure.Persistence
         private const string UrlCloud = @"https://a.free.gsoftware.ravendb.cloud/";
         private const string CertificateFileName = "free.gsoftware.client.certificate.with.password.pfx";
         private const string CertificatePassword = "8FF4A485E3D110558EF44DAA5347761E";
-        private static string MainDatabase = Utils.Extensions.EnvironmentIsDevelopment() ? "Mega.WhatsAppApi.Dev" : "Mega.WhatsAppApi";
+        private static readonly string MainDatabase = Utils.Extensions.EnvironmentIsDevelopment() ? "Mega.WhatsAppApi.Dev" : "Mega.WhatsAppApi";
         
         /// <summary>
         /// Gets main document store.
         /// </summary>
         /// <returns>Return this document store.</returns>
-        public static IDocumentStore MegaWhatsAppApi => DocumentStores[MainDatabase] ?? CreateNewDocumentStore(MainDatabase);
+        public static IDocumentStore MegaWhatsAppApi
+        {
+            get
+            {
+                var mainDbIsPresent = DocumentStores.ContainsKey(MainDatabase);
+                if (!mainDbIsPresent)
+                {
+                    return  CreateNewDocumentStore(MainDatabase);
+                }
+
+                return DocumentStores[MainDatabase];
+            }
+        }
 
         /// <summary>
         /// The document stores.
@@ -32,7 +44,10 @@ namespace Mega.WhatsAppApi.Infrastructure.Persistence
 
         #region Constructor
 
-        static Stores() => DocumentStores = new Dictionary<string, IDocumentStore>();
+        static Stores()
+        {
+            DocumentStores = new Dictionary<string, IDocumentStore>();
+        } 
         
         #endregion
 

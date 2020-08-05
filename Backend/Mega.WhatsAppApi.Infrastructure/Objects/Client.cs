@@ -40,5 +40,10 @@ namespace Mega.WhatsAppApi.Infrastructure.Objects
         /// <value>The api key.</value>
         [Obsolete]
         public string MaytApiKey { get; set; }
+        
+        /// <summary>
+        /// Url for automator
+        /// </summary>
+        public string MegaAutomatorUrl { get; set; }
     }
 }

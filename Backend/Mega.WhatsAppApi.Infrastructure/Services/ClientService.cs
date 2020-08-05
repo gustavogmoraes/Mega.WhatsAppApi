@@ -21,7 +21,7 @@ namespace Mega.WhatsAppApi.Infrastructure.Services
             {
                 return ravenSession
                     .Query<Client>()
-                    .FirstOrDefault(cliente => cliente.Token == token);
+                    .FirstOrDefault(x => x.Token == token);
             }
         }
 

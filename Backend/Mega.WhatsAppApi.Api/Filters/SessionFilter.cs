@@ -79,10 +79,22 @@ namespace Mega.WhatsAppApi.Api.Filters
                 Dados = new 
                 {  
                     Headers = context?.HttpContext?.Response?.Headers?.ToDictionary(x => x.Key, x => x.Value.ToList()),
-                    Body = (ResultadoRequest)((dynamic)context?.Result)?.Value
+                    Body = GetBodyValue(context)
                 }
             });
             EndSession(context.HttpContext);
+        }
+
+        private static dynamic GetBodyValue(ActionExecutedContext context)
+        {
+            if ((context?.Result).GetType() == typeof(EmptyResult))
+            {
+                return null;
+            }
+            
+            return ((dynamic)context?.Result)?.Value.GetType() == typeof(ResultadoRequest) 
+                ? (ResultadoRequest)((dynamic)context?.Result)?.Value
+                : ((dynamic)context?.Result)?.Value;
         }
 
         private static void StartSession(Client client, HttpContext httpContext)

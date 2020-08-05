@@ -7,7 +7,7 @@ using Mega.WhatsAppApi.Infrastructure.Objects;
 using Mega.WhatsAppApi.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace Mega.WhatsAppApi.Api
+namespace Mega.WhatsAppApi.Api.Filters
 {
     /// <summary>
     /// Exception handler filter class.
