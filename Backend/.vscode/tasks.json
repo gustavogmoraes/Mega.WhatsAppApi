@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Mega.WhatsAppApi.Api/Mega.WhatsAppApi.Api.csproj",
+                "${workspaceFolder}/GS.ContainerManager.Api/GS.ContainerManager.Api.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/Mega.WhatsAppApi.Api/Mega.WhatsAppApi.Api.csproj",
+                "${workspaceFolder}/GS.ContainerManager.Api/GS.ContainerManager.Api.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,7 +32,7 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/Mega.WhatsAppApi.Api/Mega.WhatsAppApi.Api.csproj",
+                "${workspaceFolder}/GS.ContainerManager.Api/GS.ContainerManager.Api.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
