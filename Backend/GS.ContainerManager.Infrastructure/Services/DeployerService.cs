@@ -35,23 +35,24 @@ namespace GS.ContainerManager.Infrastructure.Services
                 Console.WriteLine($"Removing {containerId}");
                 RemoveContainer(sshClient, containerId);
             }
-
-            RemoveImage(sshClient, imageName);
             
             Console.WriteLine($"Pulling newest image {imageName}");
             PullImage(sshClient, imageName);
-
+            
             foreach (var command in runCommands)
             {
                 Console.WriteLine("Redeploying container");
                 sshClient.RunCommand(command);
             }
             
+            Console.WriteLine("Removing old image");
+            RemoveOldImage(sshClient, imageName);
+            
             Console.WriteLine("All done");
             sshClient.Disconnect();    
         }
 
-        private void RemoveImage(SshClient sshClient, string imageName)
+        private void RemoveOldImage(SshClient sshClient, string imageName)
         {
             if (imageName.Contains(":"))
             {
